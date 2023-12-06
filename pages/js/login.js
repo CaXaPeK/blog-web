@@ -1,4 +1,6 @@
-document.getElementById('loginBtn').addEventListener('click', function() {
+document.getElementById('loginBtn').addEventListener('click',   function(event) {
+    event.preventDefault();
+
     var apiUrl = 'https://blog.kreosoft.space/api/account/login';
 
     var inputEmail = document.getElementById('inputEmail').value;
@@ -9,20 +11,26 @@ document.getElementById('loginBtn').addEventListener('click', function() {
         password: inputPassword
     };
 
-    var requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(postData)
-    };
+    var token = "";
 
-    fetch(apiUrl, requestOptions)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+    $.ajax({
+        url: apiUrl,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(postData),
+        success: function(data) {
+            token = data.token;
+            localStorage.setItem('token', token);
+            window.location.href = 'main.html';
+        },
+        error: function(error) {
+            if (error.responseJSON.message == "Login failed") {
+                console.log("Login failed");
+            }
+        }
+    });
+});
+
+document.getElementById('registerBtn').addEventListener('click',   function(event) {
+    window.location.href = 'register.html';
 });
