@@ -21,17 +21,15 @@
                         <a class="nav-link" href="#">Группы</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Написать пост</a>
+                        <a class="nav-link disabled" href="#" id="createPostButton">Написать пост</a>
                     </li>
                 </ul>
-                <div class="d-flex" id="loginLinkDiv">
-                    <div class="nav-item">
-                        <a class="nav-link" href="#" id="loginLink">Вход</a>
-                    </div>
+                <div class="d-flex nav-item">
+                    <a class="nav-link" href="#" id="loginLink">Вход</a>
                 </div>
-                <!-- <form class="d-flex" role="search">
-                    <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <form class="d-flex" role="search">
+                    <div class="nav-item dropdown" style="display: none;" id="profileDropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="emailText">
                             почта@mail.ru
                         </a>
                         <ul class="dropdown-menu">
@@ -39,7 +37,7 @@
                             <li><a class="dropdown-item" href="#">Выйти</a></li>
                         </ul>
                     </div>
-                </form> -->
+                </form>
             </div>
         </div>
     </nav>

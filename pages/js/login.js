@@ -19,9 +19,9 @@ document.getElementById('loginBtn').addEventListener('click',   function(event) 
         contentType: 'application/json',
         data: JSON.stringify(postData),
         success: function(data) {
-            token = data.token;
-            localStorage.setItem('token', token);
-            window.location.href = 'main.html';
+            localStorage.setItem('token', data.token);
+            //window.location.href = 'main.html';
+            authorizeNavbar();
         },
         error: function(error) {
             if (error.responseJSON.message == "Login failed") {
@@ -31,6 +31,6 @@ document.getElementById('loginBtn').addEventListener('click',   function(event) 
     });
 });
 
-    document.getElementById('registerBtn').addEventListener('click',   function(event) {
-        openInsideNavbar("../html/register.html", "../js/register.js");
-    });
+document.getElementById('registerBtn').addEventListener('click',   function(event) {
+    openInsideNavbar("../html/register.html", "../js/register.js");
+});
