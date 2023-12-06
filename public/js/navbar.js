@@ -1,4 +1,4 @@
-openInsideNavbar("../html/login.html", "../js/login.js");
+//openInsideNavbar("../html/login.html", "../js/login.js");
 
 function openInsideNavbar(htmlPath, jsPath) {
     var xhr = new XMLHttpRequest();
@@ -30,7 +30,7 @@ function openInsideNavbar(htmlPath, jsPath) {
 }
 
 document.getElementById('loginLink').addEventListener('click',   function(event) {
-    openInsideNavbar("../html/login.html", "../js/login.js");
+    window.location.href = './login';
 });
 
 function authorizeNavbar() {

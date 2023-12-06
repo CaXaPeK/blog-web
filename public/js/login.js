@@ -32,5 +32,5 @@ document.getElementById('loginBtn').addEventListener('click',   function(event) 
 });
 
 document.getElementById('registerBtn').addEventListener('click',   function(event) {
-    openInsideNavbar("../html/register.html", "../js/register.js");
+    window.location.href = './registration';
 });
