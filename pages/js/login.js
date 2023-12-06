@@ -31,6 +31,6 @@ document.getElementById('loginBtn').addEventListener('click',   function(event) 
     });
 });
 
-document.getElementById('registerBtn').addEventListener('click',   function(event) {
-    window.location.href = 'register.html';
-});
+    document.getElementById('registerBtn').addEventListener('click',   function(event) {
+        openInsideNavbar("../html/register.html", "../js/register.js");
+    });

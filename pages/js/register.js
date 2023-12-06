@@ -1,3 +1,4 @@
+console.log("hello");
 document.getElementById('registerBtn').addEventListener('click',   function(event) {
     event.preventDefault();
 
