@@ -12,20 +12,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Главная</a>
+                    <a class="nav-link" href="./" id="homeLink">Главная</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Авторы</a>
+                    <a class="nav-link" href="./authors" id="authorsLink">Авторы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Группы</a>
+                    <a class="nav-link" href="./communities" id="communitiesLink">Группы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#" id="createPostButton">Написать пост</a>
+                    <a class="nav-link disabled" href="./post/create" id="createPostButton">Написать пост</a>
                 </li>
             </ul>
             <div class="d-flex nav-item">
-                <a class="nav-link" href="#" id="loginLink">Вход</a>
+                <a class="nav-link" href="./login" id="loginLink">Вход</a>
             </div>
             <form class="d-flex" role="search">
                 <div class="nav-item dropdown" style="display: none;" id="profileDropdown">
@@ -33,8 +33,8 @@
                         почта@mail.ru
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Профиль</a></li>
-                        <li><a class="dropdown-item" href="#">Выйти</a></li>
+                        <li><a class="dropdown-item" href="./profile" id="profileLink">Профиль</a></li>
+                        <li><a class="dropdown-item" href="#" id="logoutButton">Выйти</a></li>
                     </ul>
                 </div>
             </form>
@@ -52,6 +52,5 @@
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/navbar.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 </html>

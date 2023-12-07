@@ -1,5 +1,3 @@
-//openInsideNavbar("../html/login.html", "../js/login.js");
-
 function openInsideNavbar(htmlPath, jsPath) {
     var xhr = new XMLHttpRequest();
 
@@ -28,10 +26,6 @@ function openInsideNavbar(htmlPath, jsPath) {
         });
     }
 }
-
-document.getElementById('loginLink').addEventListener('click',   function(event) {
-    window.location.href = './login';
-});
 
 function authorizeNavbar() {
     var email = "";
@@ -69,3 +63,27 @@ function authorizeNavbar() {
     xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
     xhr.send();
 }
+
+document.getElementById('loginLink').addEventListener('click',   function(event) {
+    window.location.href = './login';
+});
+
+document.getElementById('homeLink').addEventListener('click',   function(event) {
+    window.location.href = './';
+});
+
+document.getElementById('authorsLink').addEventListener('click',   function(event) {
+    window.location.href = './authors';
+});
+
+document.getElementById('communitiesLink').addEventListener('click',   function(event) {
+    window.location.href = './communities';
+});
+
+document.getElementById('createPostButton').addEventListener('click',   function(event) {
+    window.location.href = './post/create';
+});
+
+document.getElementById('profileLink').addEventListener('click',   function(event) {
+    window.location.href = './profile';
+});
