@@ -1,17 +1,17 @@
-var inputEmail = document.getElementById('inputEmail');
-var inputPassword = document.getElementById('inputPassword');
-var emailError = document.getElementById('emailError');
-var passwordError = document.getElementById('passwordError');
+let inputEmail = document.getElementById('inputEmail');
+let inputPassword = document.getElementById('inputPassword');
+let emailError = document.getElementById('emailError');
+let passwordError = document.getElementById('passwordError');
 
 function sendAuthorizeCheck() {
     authorizeNavbar(false);
 }
 
-inputEmail.addEventListener('input', function(event) {
+inputEmail.addEventListener('focusout', function(event) {
     validateEmail(inputEmail, emailError);
 })
 
-inputPassword.addEventListener('input', function(event) {
+inputPassword.addEventListener('focusout', function(event) {
     validatePassword(inputPassword, passwordError);
 })
 
@@ -26,9 +26,9 @@ document.getElementById('loginBtn').addEventListener('click',   function(event) 
         return;
     }
 
-    var apiUrl = 'https://blog.kreosoft.space/api/account/login';
+    let apiUrl = 'https://blog.kreosoft.space/api/account/login';
 
-    var postData = {
+    let postData = {
         email: inputEmail.value,
         password: inputPassword.value
     };
