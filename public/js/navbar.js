@@ -1,4 +1,4 @@
-function authorizeNavbar() {
+function authorizeNavbar(redirectIfFail) {
     var email = "";
 
     var xhr = new XMLHttpRequest();
@@ -20,9 +20,15 @@ function authorizeNavbar() {
                 emailText.textContent = email;
                 loginLink.style.display = "none";
                 profileDropdown.style.display = "flex";
+
+                return true;
             } else {
                 console.error('Ошибка:', xhr.statusText);
                 disableAuthorizedButtons();
+                if (redirectIfFail) {
+                    window.href.location = './login';
+                }
+                return false;
             }
         }
     };

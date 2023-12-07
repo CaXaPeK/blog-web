@@ -14,8 +14,8 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    res.render('login', {
-        title: "Вход"
+    res.render('main', {
+        title: "Главная"
     });
 });
 
@@ -28,6 +28,18 @@ app.get('/login', (req, res) => {
 app.get('/registration', (req, res) => {
     res.render('register', {
         title: "Регистрация"
+    });
+});
+
+app.get('/registration', (req, res) => {
+    res.render('register', {
+        title: "Регистрация"
+    });
+});
+
+app.get('/profile', (req, res) => {
+    res.render('profile', {
+        title: "Профиль"
     });
 });
 

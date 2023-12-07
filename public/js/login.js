@@ -1,3 +1,5 @@
+authorizeNavbar(false);
+
 document.getElementById('loginBtn').addEventListener('click',   function(event) {
     event.preventDefault();
 
@@ -20,8 +22,8 @@ document.getElementById('loginBtn').addEventListener('click',   function(event) 
         data: JSON.stringify(postData),
         success: function(data) {
             localStorage.setItem('token', data.token);
-            //window.location.href = 'main.html';
-            authorizeNavbar();
+            window.location.href = './';
+            authorizeNavbar(false);
         },
         error: function(error) {
             if (error.responseJSON.message == "Login failed") {

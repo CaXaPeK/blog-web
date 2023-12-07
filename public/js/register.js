@@ -1,4 +1,5 @@
-console.log("hello");
+authorizeNavbar(false);
+
 document.getElementById('registerBtn').addEventListener('click',   function(event) {
     event.preventDefault();
 
