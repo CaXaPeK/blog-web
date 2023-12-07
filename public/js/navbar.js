@@ -1,32 +1,3 @@
-function openInsideNavbar(htmlPath, jsPath) {
-    var xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            removePreviousScripts();
-            document.getElementById('contentContainer').innerHTML = xhr.responseText;
-            loadScript();
-        }
-    };
-
-    xhr.open('GET', htmlPath, true);
-    xhr.send();
-
-    function loadScript() {
-        var script = document.createElement('script');
-        script.src = jsPath;
-        document.body.appendChild(script);
-    }
-
-    function removePreviousScripts() {
-        var scripts = document.body.querySelectorAll('script');
-
-        scripts.forEach(function(script) {
-            script.parentNode.removeChild(script);
-        });
-    }
-}
-
 function authorizeNavbar() {
     var email = "";
 
@@ -36,14 +7,14 @@ function authorizeNavbar() {
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
-            var loginLink = document.getElementById('loginLink');
-            var profileDropdown = document.getElementById('profileDropdown');
-            var emailText = document.getElementById('emailText');
-            var createPostButton = document.getElementById('createPostButton');
-
             if (xhr.status === 200) {
                 var responseData = JSON.parse(xhr.responseText);
                 email = responseData.email;
+
+                var loginLink = document.getElementById('loginLink');
+                var profileDropdown = document.getElementById('profileDropdown');
+                var emailText = document.getElementById('emailText');
+                var createPostButton = document.getElementById('createPostButton');
 
                 createPostButton.classList.remove('disabled');
                 emailText.textContent = email;
@@ -51,10 +22,7 @@ function authorizeNavbar() {
                 profileDropdown.style.display = "flex";
             } else {
                 console.error('Ошибка:', xhr.statusText);
-
-                createPostButton.classList.add('disabled');
-                loginLink.style.display = "none";
-                profileDropdown.style.display = "flex";
+                disableAuthorizedButtons();
             }
         }
     };
@@ -63,6 +31,39 @@ function authorizeNavbar() {
     xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
     xhr.send();
 }
+
+function disableAuthorizedButtons() {
+    var loginLink = document.getElementById('loginLink');
+    var profileDropdown = document.getElementById('profileDropdown');
+    var createPostButton = document.getElementById('createPostButton');
+
+    createPostButton.classList.add('disabled');
+    loginLink.style.display = "flex";
+    profileDropdown.style.display = "none";
+}
+
+document.getElementById('logoutButton').addEventListener('click',   function(event) {
+    var xhr = new XMLHttpRequest();
+    var apiUrl = 'https://blog.kreosoft.space/api/account/logout';
+    var authToken = localStorage.getItem('token');
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                localStorage.setItem('token', "");
+                disableAuthorizedButtons();
+                window.location.href = "./login";
+            } else {
+                console.error('Ошибка:', xhr.statusText);
+                //message: Не удалось выйти из системы.
+            }
+        }
+    };
+
+    xhr.open('POST', apiUrl, true);
+    xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
+    xhr.send();
+});
 
 document.getElementById('loginLink').addEventListener('click',   function(event) {
     window.location.href = './login';
