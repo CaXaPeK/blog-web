@@ -83,12 +83,8 @@ function validateGender(input, errorField) {
 }
 
 function validateNumber(input, errorField) {
-    if (input.value === '') {
-        reportValidityError(input, errorField, "Введите номер телефона.");
-        return false;
-    }
 
-    if (input.value.length < 18) {
+    if (input.value.length < 18 && input.value.length > 0) {
         reportValidityError(input, errorField, "Номер телефона неполный.");
         return false;
     }
