@@ -1,38 +1,44 @@
 <div class="d-flex container justify-content-center align-items-center" style="min-height: 100vh;">
     <div class="card shadow" style="width: 30rem;">
         <div class="card-body">
-            <h5 class="card-title">Регистрация</h5>
-            <form>
+            <h1 class="card-title">Регистрация</h1>
+            <form class="needs-validation" novalidate>
                 <div class="mb-3">
                     <label for="inputName" class="form-label">ФИО</label>
                     <input type="text" class="form-control" id="inputName" placeholder="Иванов Иван Иванович" required>
+                    <div class="invalid-feedback" id="nameError"></div>
                 </div>
                 <div class="mb-3">
                     <label for="inputDate" class="form-label">Дата рождения</label>
                     <input type="date" class="form-control" id="inputDate" placeholder="дд.мм.гггг" required>
+                    <div class="invalid-feedback" id="dateError"></div>
                 </div>
                 <div class="mb-3">
                     <label for="inputGender" class="form-label">Пол</label>
                     <select class="form-control" id="inputGender">
-                        <option value="male">Мужской</option>
-                        <option value="female">Женский</option>
+                        <option selected disabled>—</option>
+                        <option value="male">Мужчина</option>
+                        <option value="female">Женщина</option>
                     </select>
+                    <div class="invalid-feedback" id="genderError"></div>
                 </div>
                 <div class="mb-3">
                     <label for="inputNumber" class="form-label">Телефон</label>
-                    <input type="tel" class="form-control" id="inputNumber" placeholder="+7 (xxx) xxx xx-xx" pattern="\+7 ([0-9]{3}) [0-9]{3} [0-9]{2}-[0-9]{2}" required>
+                    <input type="tel" class="form-control" id="inputNumber" placeholder="+7 (xxx) xxx-xx-xx" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" required>
+                    <div class="invalid-feedback" id="numberError"></div>
                 </div>
                 <div class="mb-3">
                     <label for="inputEmail" class="form-label">Электронная почта</label>
                     <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="name@example.com" required>
+                    <div class="invalid-feedback" id="emailError"></div>
                     <div id="emailHelper" class="form-text">
-                        Почта будет использоваться для входа в систему
+                        Почта будет использоваться для входа в систему.
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="inputPassword" class="form-label">Пароль</label>
                     <input type="password" class="form-control" id="inputPassword" required>
-                    <div class="invalid-feedback">test</div>
+                    <div class="invalid-feedback" id="passwordError"></div>
                 </div>
                 <div class="d-grid gap-2">
                     <button type="button" class="btn btn-primary" id="registerBtn">Зарегистрироваться</button>
@@ -42,6 +48,8 @@
     </div>
 </div>
 
-<script src="/js/register.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/libs/jquery.maskedinput.min.js" type="text/javascript"></script>
+<script src="/js/register.js"></script>
+<script src="/js/globalValidation.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

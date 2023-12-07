@@ -31,12 +31,6 @@ app.get('/registration', (req, res) => {
     });
 });
 
-app.get('/registration', (req, res) => {
-    res.render('register', {
-        title: "Регистрация"
-    });
-});
-
 app.get('/profile', (req, res) => {
     res.render('profile', {
         title: "Профиль"
