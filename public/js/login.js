@@ -1,5 +1,3 @@
-authorizeNavbar(false);
-
 document.getElementById('loginBtn').addEventListener('click',   function(event) {
     event.preventDefault();
 
@@ -13,8 +11,6 @@ document.getElementById('loginBtn').addEventListener('click',   function(event) 
         password: inputPassword
     };
 
-    var token = "";
-
     $.ajax({
         url: apiUrl,
         type: 'POST',
@@ -22,7 +18,7 @@ document.getElementById('loginBtn').addEventListener('click',   function(event) 
         data: JSON.stringify(postData),
         success: function(data) {
             localStorage.setItem('token', data.token);
-            window.location.href = './';
+            //window.location.href = './';
             authorizeNavbar(false);
         },
         error: function(error) {
@@ -36,3 +32,7 @@ document.getElementById('loginBtn').addEventListener('click',   function(event) 
 document.getElementById('registerBtn').addEventListener('click',   function(event) {
     window.location.href = './registration';
 });
+
+function sendAuthorizeCheck() {
+    authorizeNavbar(false);
+}

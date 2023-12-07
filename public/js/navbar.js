@@ -1,3 +1,5 @@
+sendAuthorizeCheck();
+
 function authorizeNavbar(redirectIfFail) {
     var email = "";
 
@@ -23,10 +25,12 @@ function authorizeNavbar(redirectIfFail) {
 
                 return true;
             } else {
-                console.error('Ошибка:', xhr.statusText);
+                if (xhr.status === 401) {
+                    console.error("Пользователь не авторизирован.");
+                }
                 disableAuthorizedButtons();
                 if (redirectIfFail) {
-                    window.href.location = './login';
+                    window.location.href = './login';
                 }
                 return false;
             }

@@ -1,5 +1,3 @@
-authorizeNavbar(false);
-
 document.getElementById('registerBtn').addEventListener('click',   function(event) {
     event.preventDefault();
 
@@ -40,3 +38,7 @@ document.getElementById('registerBtn').addEventListener('click',   function(even
         }
     });
 });
+
+function sendAuthorizeCheck() {
+    authorizeNavbar(false);
+}
