@@ -1,19 +1,19 @@
-var inputName = document.getElementById('inputName');
-var inputDate = document.getElementById('inputDate');
-var inputGender = document.getElementById('inputGender');
-var inputEmail = document.getElementById('inputEmail');
-var inputPassword = document.getElementById('inputPassword');
-var inputNumber = document.getElementById('inputNumber');
+let inputName = document.getElementById('inputName');
+let inputDate = document.getElementById('inputDate');
+let inputGender = document.getElementById('inputGender');
+let inputEmail = document.getElementById('inputEmail');
+let inputPassword = document.getElementById('inputPassword');
+let inputNumber = document.getElementById('inputNumber');
 
-var nameError = document.getElementById('nameError');
-var dateError = document.getElementById('dateError');
-var genderError = document.getElementById('genderError');
-var emailError = document.getElementById('emailError');
-var passwordError = document.getElementById('passwordError');
-var numberError = document.getElementById('numberError');
+let nameError = document.getElementById('nameError');
+let dateError = document.getElementById('dateError');
+let genderError = document.getElementById('genderError');
+let emailError = document.getElementById('emailError');
+let passwordError = document.getElementById('passwordError');
+let numberError = document.getElementById('numberError');
 
 $("#inputNumber").mask("+7 (999) 999-99-99");
-var today = new Date().toISOString().split('T')[0];
+let today = new Date().toISOString().split('T')[0];
 inputDate.setAttribute('max', today);
 
 function sendAuthorizeCheck() {
@@ -71,9 +71,9 @@ document.getElementById('registerBtn').addEventListener('click',   function(even
         return;
     }
 
-    var apiUrl = 'https://blog.kreosoft.space/api/account/register';
+    let apiUrl = 'https://blog.kreosoft.space/api/account/register';
 
-    var postData = {
+    let postData = {
         fullName: inputName.value,
         password: inputPassword.value,
         email: inputEmail.value,
