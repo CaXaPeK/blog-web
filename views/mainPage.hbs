@@ -1,6 +1,6 @@
 <div class="container">
     <div class="d-grid justify-content-end my-3">
-        <button type="button" class="btn btn-primary disabled" id="newPostBtn">Написать пост</button>
+        <a type="button" class="btn btn-primary disabled" id="newPostBtn" href="./post/create">Написать пост</a>
     </div>
     <div class="card shadow-sm my-3">
         <div class="card-header">
@@ -35,12 +35,12 @@
                     </div>
                     <div class="col-2">
                         <label for="minReadTimeFilter" class="form-label">Время чтения от</label>
-                        <input type="number" class="form-control" id="minReadTimeFilter">
+                        <input type="number" class="form-control" id="minReadTimeFilter" min="1">
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="col-2">
                         <label for="maxReadTimeFilter" class="form-label">Время чтения до</label>
-                        <input type="number" class="form-control" id="maxReadTimeFilter">
+                        <input type="number" class="form-control" id="maxReadTimeFilter" min="1">
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="col">
@@ -106,8 +106,8 @@
         </div>
         <div class="col"></div>
         <div class="col-auto">
-            <label for="minReadTimeFilter" class="form-label">Число постов на странице</label>
-            <input type="number" class="form-control" id="minReadTimeFilter" min="1">
+            <label for="pageSize" class="form-label">Число постов на странице</label>
+            <input type="number" class="form-control" id="pageSize" min="1" max="1">
         </div>
     </div>
 </div>

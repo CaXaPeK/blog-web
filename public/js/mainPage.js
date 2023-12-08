@@ -1,8 +1,10 @@
 let newPostBtn = document.getElementById('newPostBtn');
 let tagFilter = document.getElementById('tagFilter');
 let filterApplyBtn = document.getElementById('filterApplyBtn');
+let pageSize = document.getElementById('pageSize');
 
-getTags();
+loadTags();
+loadPosts();
 
 function sendAuthorizeCheck() {
     authorizeNavbar(false);
@@ -12,7 +14,7 @@ function authorizeInnerPage() {
     newPostBtn.classList.remove('disabled');
 }
 
-function getTags() {
+function loadTags() {
     let apiUrl = 'https://blog.kreosoft.space/api/tag';
 
     $.ajax({
@@ -27,6 +29,28 @@ function getTags() {
             }
 
             filterApplyBtn.classList.remove('disabled');
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+}
+
+function loadPosts() {
+    let apiUrl = 'https://blog.kreosoft.space/api/post';
+
+    $.ajax({
+        url: apiUrl,
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            'Content-Type': 'application/json'
+        },
+        success: function(data) {
+            pageSize.value = data.pagination.size;
+            pageSize.max = data.pagination.count;
+            console.log(data);
         },
         error: function(error) {
             console.log(error);
