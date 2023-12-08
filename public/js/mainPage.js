@@ -1,0 +1,3 @@
+function sendAuthorizeCheck() {
+    authorizeNavbar(false);
+}

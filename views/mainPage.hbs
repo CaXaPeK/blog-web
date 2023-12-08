@@ -1,0 +1,122 @@
+<div class="container">
+    <div class="d-grid justify-content-end my-3">
+        <button type="button" class="btn btn-primary disabled" id="saveBtn">Написать пост</button>
+    </div>
+    <div class="card shadow-sm my-3">
+        <div class="card-header">
+            Фильтры
+        </div>
+        <div class='card-body'>
+            <form>
+                <div class="row">
+                    <div class="col-16 col-md-6">
+                        <label for="authorFilter" class="form-label">Поиск по имени автора</label>
+                        <input type="text" class="form-control" id="authorFilter">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="col-16 col-md-6">
+                        <label for="tagFilter" class="form-label">Поиск по тегам</label>
+                        <select multiple size="3" class="form-control" id="tagFilter">
+                            <option value="option-1">тег1</option>
+                            <option value="option-2">тег2</option>
+                            <option value="option-3">тег3</option>
+                            <option value="option-4">тег4</option>
+                        </select>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+                <div class="row mt-3 align-items-end">
+                    <div class="col-4">
+                        <label for="sortFilter" class="form-label">Сортировать</label>
+                        <select class="form-select" id="sortFilter">
+                            <option selected disabled>—</option>
+                            <option value="CreateDesc">По дате создания (сначала новые)</option>
+                            <option value="CreateAsc">По дате создания (сначала старые)</option>
+                            <option value="LikeDesc">По кол-ву лайков (сначала популярные)</option>
+                            <option value="LikeAsc">По кол-ву лайков (сначала непопулярные)</option>
+                        </select>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="col-2">
+                        <label for="minReadTimeFilter" class="form-label">Время чтения от</label>
+                        <input type="number" class="form-control" id="minReadTimeFilter">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="col-2">
+                        <label for="maxReadTimeFilter" class="form-label">Время чтения до</label>
+                        <input type="number" class="form-control" id="maxReadTimeFilter">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="myCommunitiesFilter">
+                            <label class="form-check-label" for="myCommunitiesFilter">Только мои группы</label>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-primary disabled mt-3" id="saveBtn">Применить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card shadow-sm my-3">
+        <div class="card-body">
+            <p class="text-muted">просто какой-то тестовый текст</p>
+            <h3 class="card-title">Заголовок</h3>
+            <hr>
+            <div id="postText">
+                Эл. почта и пароль теперь проходят валидацию перед отправкой: они недолжны быть пустыми строками; эл. почта должна быть правильной эл. почтой; пароль должен быть >= 6 символов и содержать как минимум 1 букву, 1 заглавную букву, 1 цифру и 1 спецсимвол.
+            </div>
+            <a href="#">Показать полностью</a>
+        </div>
+        <div class="card-footer text-muted">
+            <div class="row">
+                <div class="col-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots-fill" viewBox="0 0 16 16">
+                        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                    </svg>
+                    10
+                </div>
+                <div class="col"></div>
+                <div class="col-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                    </svg>
+                    2
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row align-items-end my-3">
+        <div class="col-auto">
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <span class="page-link">«</span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link">2</span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">»</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col"></div>
+        <div class="col-auto">
+            <label for="minReadTimeFilter" class="form-label">Число постов на странице</label>
+            <input type="number" class="form-control" id="minReadTimeFilter" min="1">
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/libs/jquery.maskedinput.min.js" type="text/javascript"></script>
+<script src="/js/mainPage.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
