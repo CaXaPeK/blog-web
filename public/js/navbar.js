@@ -1,45 +1,40 @@
 sendAuthorizeCheck();
 
+let loginLink = document.getElementById('loginLink');
+let profileDropdown = document.getElementById('profileDropdown');
+let emailText = document.getElementById('emailText');
+let createPostButton = document.getElementById('createPostButton');
+
 function authorizeNavbar(redirectIfFail) {
-    var email = "";
+    let apiUrl = 'https://blog.kreosoft.space/api/account/profile';
 
-    var xhr = new XMLHttpRequest();
-    var apiUrl = 'https://blog.kreosoft.space/api/account/profile';
-    var authToken = localStorage.getItem('token');
+    $.ajax({
+        url: apiUrl,
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            'Content-Type': 'application/json'
+        },
+        success: function(data) {
+            createPostButton.classList.remove('disabled');
+            emailText.textContent = data.email;
+            loginLink.style.display = "none";
+            profileDropdown.style.display = "flex";
+            authorizeInnerPage();
 
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                var responseData = JSON.parse(xhr.responseText);
-                email = responseData.email;
-
-                var loginLink = document.getElementById('loginLink');
-                var profileDropdown = document.getElementById('profileDropdown');
-                var emailText = document.getElementById('emailText');
-                var createPostButton = document.getElementById('createPostButton');
-
-                createPostButton.classList.remove('disabled');
-                emailText.textContent = email;
-                loginLink.style.display = "none";
-                profileDropdown.style.display = "flex";
-
-                return true;
-            } else {
-                if (xhr.status === 401) {
-                    console.error("Пользователь не авторизирован.");
-                }
-                disableAuthorizedButtons();
-                if (redirectIfFail) {
-                    window.location.href = './login';
-                }
-                return false;
+            return true;
+        },
+        error: function(error) {
+            console.log(error);
+            disableAuthorizedButtons();
+            if (redirectIfFail) {
+                window.location.href = './login';
             }
-        }
-    };
 
-    xhr.open('GET', apiUrl, true);
-    xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
-    xhr.send();
+            return false;
+        }
+    });
 }
 
 function disableAuthorizedButtons() {
