@@ -8,7 +8,6 @@ let myCommunitiesFilter = document.getElementById('myCommunitiesFilter');
 let newPostBtn = document.getElementById('newPostBtn');
 
 let filterApplyBtn = document.getElementById('filterApplyBtn');
-let pageSize = document.getElementById('pageSize');
 let notFoundText = document.getElementById('notFoundText');
 
 let postContainer = document.getElementById('postContainer');
@@ -59,8 +58,6 @@ function loadPosts() {
         },
         success: function(data) {
             notFoundText.textContent = '';
-            pageSize.value = data.pagination.size;
-            pageSize.max = data.pagination.count;
             console.log(data);
 
             for (let i = 0; i < data.posts.length; i++) {
@@ -70,10 +67,14 @@ function loadPosts() {
             if (data.posts.length === 0) {
                 notFoundText.textContent = "Ничего не найдено :(";
             }
+
+            loadPagination(data.pagination.count, data.pagination.current, data.pagination.size);
         },
         error: function(error) {
             console.log(error);
             notFoundText.textContent = "Ничего не найдено :(";
+            //loadPagination();
+            updatePagination(0, 1, 5);
         }
     });
 }
@@ -94,8 +95,8 @@ function sendFilters() {
     if (sortFilter.value != "—") {
         params.set('sorting', sortFilter.value);
     }
-    if (myCommunitiesFilter.value != false) {
-        params.set('onlyMyCommunities', myCommunitiesFilter.value);
+    if (myCommunitiesFilter.checked != false) {
+        params.set('onlyMyCommunities', myCommunitiesFilter.checked);
     }
     if (tagFilter.selectedOptions.length != 0) {
         for (let i = 0; i < tagFilter.selectedOptions.length; i++) {
@@ -103,6 +104,7 @@ function sendFilters() {
         }
     }
 
-    window.location.href = params != "" ? "/?" + params : "/";
+    params.delete('page');
 
+    window.location.search = params;
 }
