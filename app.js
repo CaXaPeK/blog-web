@@ -37,4 +37,10 @@ app.get('/profile', (req, res) => {
     });
 });
 
+app.get('/communities', (req, res) => {
+    res.render('communities', {
+        title: "Группы"
+    });
+});
+
 app.listen(3000);
