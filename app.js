@@ -38,8 +38,22 @@ app.get('/profile', (req, res) => {
 });
 
 app.get('/communities', (req, res) => {
-    res.render('communities', {
+    res.render('communityList', {
         title: "Группы"
+    });
+});
+
+app.get('/communities/:id', (req, res) => {
+    res.render('community', {
+        title: "Группа",
+        id: req.params.id
+    });
+});
+
+app.get('/post/:id', (req, res) => {
+    res.render('post', {
+        title: "Пост",
+        id: req.params.id
     });
 });
 
