@@ -73,6 +73,7 @@ function loadPosts() {
         },
         error: function(error) {
             console.log(error);
+            notFoundText.textContent = "Ничего не найдено :(";
         }
     });
 }

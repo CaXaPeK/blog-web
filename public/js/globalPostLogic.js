@@ -49,6 +49,12 @@ function commentPost(commentBtn) {
 
 }
 
+function showFull(showBtn) {
+    showBtn.parentNode.querySelector('.post-text-short').classList.add('d-none');
+    showBtn.parentNode.querySelector('.post-text-full').classList.remove('d-none');
+    showBtn.style.display = 'none';
+}
+
 function pressTitle(postTitle) {
     window.location.href = "/post/" + postTitle.id;
 }
