@@ -1,3 +1,5 @@
+const POST_LENGTH = 500;
+
 function likePost(likeBtn) {
     if (likeBtn.classList.contains('disabled')) {
         return;
@@ -46,7 +48,13 @@ function likePost(likeBtn) {
 }
 
 function commentPost(commentBtn) {
+    window.location.href = "/post/" + commentBtn.id + "#Комментарии";
+}
 
+function showFull(showBtn) {
+    showBtn.parentNode.querySelector('.post-text-short').classList.add('d-none');
+    showBtn.parentNode.querySelector('.post-text-full').classList.remove('d-none');
+    showBtn.style.display = 'none';
 }
 
 function pressTitle(postTitle) {
@@ -63,8 +71,8 @@ function appendPost(post) {
         }
 
         let shortText = post.description;
-        if (shortText.length > 300) {
-            shortText = shortText.substring(0, 300) + "...";
+        if (shortText.length > POST_LENGTH) {
+            shortText = shortText.substring(0, POST_LENGTH) + "...";
             $clonedPost.find('.show-full-btn').removeClass('d-none');
         }
 
@@ -91,6 +99,7 @@ function appendPost(post) {
         $clonedPost.find('.post-text-short').text(shortText);
         $clonedPost.find('.post-text-full').text(post.description);
         $clonedPost.find('.comment-count').text(post.commentsCount);
+        $clonedPost.find('.comment-btn').attr("id", post.id);
         $clonedPost.find('.like-count').text(post.likes);
         $clonedPost.find('.like-btn').attr("id", post.id);
         $clonedPost.find('.read-time').text("Время чтения: " + post.readingTime + " мин");
