@@ -1,4 +1,4 @@
-loadTags();
+loadTags('tagFilter');
 loadPosts();
 
 function sendAuthorizeCheck() {

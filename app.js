@@ -56,6 +56,12 @@ app.get('/communities/:id', (req, res) => {
     });
 });
 
+app.get('/post/create', (req, res) => {
+    res.render('createPost', {
+        title: "Новый пост"
+    });
+});
+
 app.get('/post/:id', (req, res) => {
     res.render('post', {
         title: "Пост",

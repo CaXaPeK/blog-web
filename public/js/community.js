@@ -38,6 +38,7 @@ function displayCommunity(community) {
         $communityTemplate.find('.community-type').text("Тип группы: " + (community.isClosed == true ? "закрытая" : "открытая"));
         $communityTemplate.find('.btn-primary').attr('id', community.id);
         $communityTemplate.find('.btn-danger').attr('id', community.id);
+        $communityTemplate.find('.btn-new-post').attr('id', community.id);
 
         $("#" + community.id).append($communityTemplate);
 
@@ -62,4 +63,8 @@ function appendAdmins(admin, num) {
 
         $("#adminsContainer").append($adminTemp);
     })
+}
+
+function newCommunityPost(btn) {
+    window.location.href = "/post/create?communityId=" + btn.id;
 }

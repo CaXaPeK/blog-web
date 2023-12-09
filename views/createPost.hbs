@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="card shadow-sm my-3">
+        <div class="card-body">
+            <h1>Написать новый пост</h1>
+            <div class="row">
+                <div class="col-9">
+                    <label for="postTitle" class="form-label">Заголовок</label>
+                    <input type="text" class="form-control" id="postTitle">
+                    <div class="invalid-feedback" id="titleError"></div>
+                </div>
+                <div class="col-3">
+                    <label for="postReadTime" class="form-label">Время чтения (мин)</label>
+                    <input type="number" class="form-control" id="postReadTime" min="1" max="2147483647" value="1">
+                    <div class="invalid-feedback" id="readTimeError"></div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-6">
+                    <label for="postCommunity" class="form-label">Группа</label>
+                    <select class="form-select" id="postCommunity">
+                        <option value="noCommunity">Без группы</option>
+                    </select>
+                    <div class="invalid-feedback" id="communityError"></div>
+                </div>
+                <div class="col-6">
+                    <label for="postTags" class="form-label">Теги</label>
+                    <select multiple size="3" class="form-select" id="postTags"></select>
+                    <div class="invalid-feedback" id="tagsError"></div>
+                </div>
+            </div>
+            <div class="mt-3">
+                <label for="postImage" class="form-label">Ссылка на картинку</label>
+                <input type="text" class="form-control" id="postImage">
+                <div class="invalid-feedback" id="imageError"></div>
+            </div>
+            <div class="my-3">
+                <label for="postText" class="form-label">Текст</label>
+                <textarea class="form-control" id="postText"></textarea>
+                <div class="invalid-feedback" id="textError"></div>
+            </div>
+            <h2>Адрес</h2>
+            <div id="addressSelects"></div>
+            <div class="row mt-3">
+                <div class="col"></div>
+                <div class="col-auto">
+                    <button class="btn btn-primary" onclick="createPost()">Создать пост</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/js/globalValidation.js"></script>
+<script src="/js/globalPostLogic.js"></script>
+<script src="/js/createPost.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

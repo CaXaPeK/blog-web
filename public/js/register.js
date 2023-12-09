@@ -91,7 +91,7 @@ document.getElementById('registerBtn').addEventListener('click',   function(even
         data: JSON.stringify(postData),
         success: function(data) {
             localStorage.setItem('token', data.token);
-            window.location.href = './';
+            window.location.href = '/';
         },
         error: function(error) {
             console.log(error);

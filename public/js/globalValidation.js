@@ -83,12 +83,87 @@ function validateGender(input, errorField) {
 }
 
 function validateNumber(input, errorField) {
-
     if (input.value.length < 18 && input.value.length > 0) {
         reportValidityError(input, errorField, "Номер телефона неполный.");
         return false;
     }
 
     reportValiditySuccess(input);
+    return true;
+}
+
+function validateTitle(input, errorField) {
+    if (input.value.length == 0) {
+        reportValidityError(input, errorField, "Введите заголовок поста.");
+        return false;
+    }
+
+    if (input.value.length < 5) {
+        reportValidityError(input, errorField, "Минимальная длина заголовка поста — 5.");
+        return false;
+    }
+
+    if (input.value.length > 1000) {
+        reportValidityError(input, errorField, "Максимальная длина заголовка поста — 1000.");
+        return false;
+    }
+
+    return true;
+}
+
+function validateReadTime(input, errorField) {
+    if (input.value.length == 0) {
+        reportValidityError(input, errorField, "Введите время чтения.");
+        return false;
+    }
+
+    if (input.value < 1) {
+        reportValidityError(input, errorField, "Минимальное время чтения — 1 мин.");
+        return false;
+    }
+
+    if (input.value > 2147483647) {
+        reportValidityError(input, errorField, "Максимальное время чтения — 2147483647 мин.");
+        return false;
+    }
+
+    return true;
+}
+
+function validateImage(input, errorField) {
+    let regex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/|ftp:\/\/)([a-zA-Z0-9-]+\.)*[a-zA-Z]{2,}(\/.*)*$/;
+    if (!regex.test(input.value) && input.value.length != 0) {
+        reportValidityError(input, errorField, "Ссылка недействительна.");
+        return false;
+    }
+
+    return true;
+}
+
+function validateText(input, errorField) {
+    if (input.value.length == 0) {
+        reportValidityError(input, errorField, "Введите текст поста.");
+        return false;
+    }
+
+    if (input.value.length < 5) {
+        reportValidityError(input, errorField, "Минимальная длина текста поста — 5.");
+        return false;
+    }
+
+    if (input.value.length > 5000) {
+        reportValidityError(input, errorField, "Максимальная длина текста поста — 5000.");
+        return false;
+    }
+
+    return true;
+}
+
+function validateTags(input, errorField) {
+    if (input.selectedOptions.length < 1) {
+        reportValidityError(input, errorField, "Выберите как минимум 1 тег.");
+        return false;
+    }
+
     return true;
 }

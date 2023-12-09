@@ -32,7 +32,7 @@ function authorizeNavbar(redirectIfFail) {
             console.log(error);
             disableAuthorizedButtons();
             if (redirectIfFail) {
-                window.location.href = './login';
+                window.location.href = '/login';
             }
 
             return false;
@@ -60,7 +60,7 @@ document.getElementById('logoutButton').addEventListener('click',   function(eve
             if (xhr.status === 200) {
                 localStorage.setItem('token', "");
                 disableAuthorizedButtons();
-                window.location.href = "./login";
+                window.location.href = "/login";
             } else {
                 console.error('Ошибка:', xhr.statusText);
                 //message: Не удалось выйти из системы.

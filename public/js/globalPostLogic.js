@@ -61,23 +61,20 @@ function pressTitle(postTitle) {
     window.location.href = "/post/" + postTitle.id;
 }
 
-function loadTags() {
+function loadTags(tagSelectName) {
     let apiUrl = 'https://blog.kreosoft.space/api/tag';
-    let tagFilter = document.getElementById('tagFilter');
-    let filterApplyBtn = document.getElementById('filterApplyBtn');
+    let tagSelect = document.getElementById(tagSelectName);
 
     $.ajax({
         url: apiUrl,
         type: 'GET',
         contentType: 'application/json',
         success: function(data) {
-            tagFilter.options.length = 0;
+            tagSelect.options.length = 0;
             for (let i = 0; i < data.length; i++) {
                 let option = new Option(data[i].name, data[i].id);
-                tagFilter.add(option);
+                tagSelect.add(option);
             }
-
-            filterApplyBtn.classList.remove('disabled');
         },
         error: function(error) {
             console.log(error);
