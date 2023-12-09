@@ -1,10 +1,16 @@
-let newPostBtn = document.getElementById('newPostBtn');
+let authorFilter = document.getElementById('authorFilter');
 let tagFilter = document.getElementById('tagFilter');
+let sortFilter = document.getElementById('sortFilter');
+let minReadTimeFilter = document.getElementById('minReadTimeFilter');
+let maxReadTimeFilter = document.getElementById('maxReadTimeFilter');
+let myCommunitiesFilter = document.getElementById('myCommunitiesFilter');
+
+let newPostBtn = document.getElementById('newPostBtn');
+
 let filterApplyBtn = document.getElementById('filterApplyBtn');
 let pageSize = document.getElementById('pageSize');
 let notFoundText = document.getElementById('notFoundText');
 
-let postTemplate = document.getElementById('postTemplate');
 let postContainer = document.getElementById('postContainer');
 
 loadTags();
@@ -28,7 +34,7 @@ function loadTags() {
         success: function(data) {
             tagFilter.options.length = 0;
             for (let i = 0; i < data.length; i++) {
-                let option = new Option(data[i].name, data[i].name);
+                let option = new Option(data[i].name, data[i].id);
                 tagFilter.add(option);
             }
 
@@ -41,7 +47,7 @@ function loadTags() {
 }
 
 function loadPosts() {
-    let apiUrl = 'https://blog.kreosoft.space/api/post';
+    let apiUrl = 'https://blog.kreosoft.space/api/post' + window.location.search;
 
     $.ajax({
         url: apiUrl,
@@ -58,7 +64,7 @@ function loadPosts() {
             console.log(data);
 
             for (let i = 0; i < data.posts.length; i++) {
-                addPost(data.posts[i]);
+                appendPost(data.posts[i]);
             }
 
             if (data.posts.length === 0) {
@@ -71,46 +77,31 @@ function loadPosts() {
     });
 }
 
-function addPost(post) {
-    let clonedPost = postTemplate.cloneNode(true);
-    clonedPost.style.display = 'flex';
+function sendFilters() {
+    let params = new URLSearchParams();
 
-    let metadata = post.author + " — " + moment(post.createTime).format('HH:mm DD.MM.YYYY');
-    if (post.communityId != null) {
-        metadata += " в группе «" + post.communityName + "»";
+    if (authorFilter.value != "") {
+        params.set('author', authorFilter.value);
     }
-
-    let shortText = post.description;
-    if (shortText.length > 300) {
-        shortText = shortText.substring(0, 300) + "...";
-        clonedPost.querySelector('.show-full-btn').style.display = 'flex';
+    if (minReadTimeFilter.value != "") {
+        params.set('min', minReadTimeFilter.value);
     }
-
-    let tags = "";
-    for (let i = 0; i < post.tags.length; i++) {
-        if (tags != "") {
-            tags += "   ";
+    if (maxReadTimeFilter.value != "") {
+        console.log(maxReadTimeFilter.value)
+        params.set('max', maxReadTimeFilter.value);
+    }
+    if (sortFilter.value != "—") {
+        params.set('sorting', sortFilter.value);
+    }
+    if (myCommunitiesFilter.value != false) {
+        params.set('onlyMyCommunities', myCommunitiesFilter.value);
+    }
+    if (tagFilter.selectedOptions.length != 0) {
+        for (let i = 0; i < tagFilter.selectedOptions.length; i++) {
+            params.append('tags', tagFilter.selectedOptions[i].value);
         }
-        tags += "#" + post.tags[i].name;
     }
 
-    if (post.image != null) {
-        clonedPost.querySelector('.image-container').src = post.image;
-        clonedPost.querySelector('.image-container').style.display = 'flex';
-    }
+    window.location.href = params != "" ? "/?" + params : "/";
 
-    if (post.hasLike === true) {
-        clonedPost.querySelector('.like-btn').classList.add('text-danger')
-    }
-
-    clonedPost.querySelector('.post-metadata').textContent = metadata;
-    clonedPost.querySelector('.card-title').textContent = post.title;
-    clonedPost.querySelector('.post-text-short').textContent = shortText;
-    clonedPost.querySelector('.post-text-full').textContent = post.description;
-    clonedPost.querySelector('.comment-count').textContent = post.commentsCount;
-    clonedPost.querySelector('.like-count').textContent = post.likes;
-    clonedPost.querySelector('.read-time').textContent = "Время чтения: " + post.readingTime + " мин";
-    clonedPost.querySelector('.tags').textContent = tags;
-
-    postContainer.appendChild(clonedPost);
 }

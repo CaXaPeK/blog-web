@@ -5,6 +5,8 @@ let profileDropdown = document.getElementById('profileDropdown');
 let emailText = document.getElementById('emailText');
 let createPostButton = document.getElementById('createPostButton');
 
+var authorized = false;
+
 function authorizeNavbar(redirectIfFail) {
     let apiUrl = 'https://blog.kreosoft.space/api/account/profile';
 
@@ -21,6 +23,7 @@ function authorizeNavbar(redirectIfFail) {
             emailText.textContent = data.email;
             loginLink.style.display = "none";
             profileDropdown.style.display = "flex";
+            authorized = true;
             authorizeInnerPage();
 
             return true;
