@@ -61,6 +61,127 @@ function pressTitle(postTitle) {
     window.location.href = "/post/" + postTitle.id;
 }
 
+function loadTags() {
+    let apiUrl = 'https://blog.kreosoft.space/api/tag';
+    let tagFilter = document.getElementById('tagFilter');
+    let filterApplyBtn = document.getElementById('filterApplyBtn');
+
+    $.ajax({
+        url: apiUrl,
+        type: 'GET',
+        contentType: 'application/json',
+        success: function(data) {
+            tagFilter.options.length = 0;
+            for (let i = 0; i < data.length; i++) {
+                let option = new Option(data[i].name, data[i].id);
+                tagFilter.add(option);
+            }
+
+            filterApplyBtn.classList.remove('disabled');
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+}
+
+
+
+function sendFilters() {
+    let params = new URLSearchParams();
+    let authorFilter = document.getElementById('authorFilter');
+    let tagFilter = document.getElementById('tagFilter');
+    let sortFilter = document.getElementById('sortFilter');
+    let minReadTimeFilter = document.getElementById('minReadTimeFilter');
+    let maxReadTimeFilter = document.getElementById('maxReadTimeFilter');
+    let myCommunitiesFilter = document.getElementById('myCommunitiesFilter');
+
+    if (authorFilter != null) {
+        if (authorFilter.value != "") {
+            params.set('author', authorFilter.value);
+        }
+    }
+    if (minReadTimeFilter != null) {
+        if (minReadTimeFilter.value != "") {
+            params.set('min', minReadTimeFilter.value);
+        }
+    }
+    if (maxReadTimeFilter != null) {
+        if (maxReadTimeFilter.value != "") {
+            params.set('max', maxReadTimeFilter.value);
+        }
+    }
+    if (sortFilter != null) {
+        if (sortFilter.value != "—") {
+            params.set('sorting', sortFilter.value);
+        }
+    }
+    if (myCommunitiesFilter != null) {
+        if (myCommunitiesFilter.checked != false) {
+            params.set('onlyMyCommunities', myCommunitiesFilter.checked);
+        }
+    }
+    if (tagFilter != null) {
+        if (tagFilter.selectedOptions.length != 0) {
+            for (let i = 0; i < tagFilter.selectedOptions.length; i++) {
+                params.append('tags', tagFilter.selectedOptions[i].value);
+            }
+        }
+    }
+
+    params.delete('page');
+
+    window.location.search = params;
+}
+
+function loadPosts() {
+    let idContainer = document.querySelector('.community-container');
+    let apiUrl = "";
+    if (idContainer != null) {
+        apiUrl = 'https://blog.kreosoft.space/api/community/' + idContainer.id + '/post' + window.location.search;
+    }
+    else {
+        apiUrl = 'https://blog.kreosoft.space/api/post' + window.location.search;
+    }
+
+    let notFoundText = document.getElementById('notFoundText');
+    let filtersForm = document.getElementById('filtersForm');
+
+    $.ajax({
+        url: apiUrl,
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            'Content-Type': 'application/json'
+        },
+        success: function(data) {
+            notFoundText.textContent = '';
+
+            for (let i = 0; i < data.posts.length; i++) {
+                appendPost(data.posts[i]);
+            }
+
+            if (data.posts.length === 0) {
+                notFoundText.textContent = "Ничего не найдено :(";
+            }
+
+            filtersForm.classList.remove('d-none');
+            loadPagination(data.pagination.count, data.pagination.current, data.pagination.size);
+        },
+        error: function(error) {
+            console.log(error);
+            if (error.status == 404) {
+                notFoundText.textContent = "Ничего не найдено :(";
+                loadPagination(0, 1, 5);
+            }
+            else if (error.status == 403) {
+
+            }
+        }
+    });
+}
+
 function appendPost(post) {
     $.get("/templates/post.html", null, function(data){
         let $clonedPost = $(data).clone();

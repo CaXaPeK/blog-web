@@ -1,4 +1,8 @@
+let isClosed = false;
+
 loadCommunity();
+loadTags();
+loadPosts();
 
 function sendAuthorizeCheck() {
 
@@ -25,6 +29,8 @@ function loadCommunity() {
 function displayCommunity(community) {
     $.get("/templates/community.html", null, function(data){
         let $communityTemplate = $(data).clone();
+
+        isClosed = community.isClosed;
 
         $communityTemplate.attr('id', "post-" + community.id);
         $communityTemplate.find('.card-title').text(community.name);

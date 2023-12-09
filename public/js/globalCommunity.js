@@ -62,6 +62,12 @@ function subscribe(btn, action, containerPrefix) {
                     subscribeButton.classList.add('d-none');
                     unsubscribeButton.classList.remove('d-none');
 
+                    console.log(isClosed);
+                    if (isClosed !== undefined) {
+                        if (isClosed) {
+                            location.reload();
+                        }
+                    }
                 }
                 else {
                     subscribeButton.classList.remove('d-none');
