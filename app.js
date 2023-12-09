@@ -43,6 +43,12 @@ app.get('/communities', (req, res) => {
     });
 });
 
+app.get('/authors', (req, res) => {
+    res.render('authors', {
+        title: "Авторы"
+    });
+});
+
 app.get('/communities/:id', (req, res) => {
     res.render('community', {
         title: "Группа",
