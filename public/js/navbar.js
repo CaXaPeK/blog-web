@@ -72,27 +72,3 @@ document.getElementById('logoutButton').addEventListener('click',   function(eve
     xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
     xhr.send();
 });
-
-document.getElementById('loginLink').addEventListener('click',   function(event) {
-    window.location.href = './login';
-});
-
-document.getElementById('homeLink').addEventListener('click',   function(event) {
-    window.location.href = './';
-});
-
-document.getElementById('authorsLink').addEventListener('click',   function(event) {
-    window.location.href = './authors';
-});
-
-document.getElementById('communitiesLink').addEventListener('click',   function(event) {
-    window.location.href = './communities';
-});
-
-document.getElementById('createPostButton').addEventListener('click',   function(event) {
-    window.location.href = './post/create';
-});
-
-document.getElementById('profileLink').addEventListener('click',   function(event) {
-    window.location.href = './profile';
-});

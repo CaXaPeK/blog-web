@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar shadow-sm sticky-top navbar-expand-lg bg-body-tertiary">
+<nav class="navbar shadow-sm bg-body sticky-top navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <span class="navbar-brand mb-0 h1">Блог</span>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -45,11 +45,13 @@
 
 {{{body}}}
 
-<footer class="fixed-bottom d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <div class="container">
-        <p class="col-md-4 mb-0 text-muted">© 2023 — Блог</p>
-    </div>
-</footer>
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <span class="mb-3 mb-md-0 text-body-secondary">© 2023 — Блог</span>
+        </div>
+    </footer>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/navbar.js"></script>
