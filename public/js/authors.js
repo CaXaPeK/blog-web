@@ -16,18 +16,13 @@ function loadAuthors() {
         type: 'GET',
         contentType: 'application/json',
         success: function(data) {
-            console.log(data);
-
             let bestThree = getBestThree(data);
-            console.log(bestThree);
             for (let i = 0; i < data.length; i++) {
                 let place = bestThree.indexOf(data[i].fullName);
                 appendAuthor(data[i], place, i);
             }
         },
-        error: function(error) {
-            console.log(error);
-        }
+        error: function(error) {}
     });
 }
 
@@ -46,7 +41,6 @@ function appendAuthor(author, place, num) {
 
         if (place == 0) {
             $authorTemplate.find('.gold-crown').removeClass('d-none');
-            console.log(author.name);
         }
         else if (place == 1) {
             $authorTemplate.find('.silver-crown').removeClass('d-none');

@@ -26,9 +26,7 @@ function checkUserRole(communityId, containerPrefix) {
                 }
             }
         },
-        error: function(error) {
-            console.log(error);
-        }
+        error: function(error) {}
     });
 }
 
@@ -40,8 +38,6 @@ function subscribe(btn, action, containerPrefix) {
     let subscribeButton = communityCard.querySelector('.btn-subscribe');
     let unsubscribeButton = communityCard.querySelector('.btn-danger');
     let subCount = document.querySelector('.subscribers-count');
-
-    console.log(subscribeButton);
 
     let requestType = action == 'subscribe' ? 'POST' : 'DELETE';
 
@@ -62,7 +58,6 @@ function subscribe(btn, action, containerPrefix) {
                     subscribeButton.classList.add('d-none');
                     unsubscribeButton.classList.remove('d-none');
 
-                    console.log(isClosed);
                     if (isClosed !== undefined) {
                         if (isClosed) {
                             location.reload();

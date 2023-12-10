@@ -4,9 +4,14 @@
             <p class="text-muted post-metadata">просто какой-то тестовый текст</p>
             <h3 class="card-title" onclick="pressTitle(this)" style="cursor: pointer;">Заголовок</h3>
             <hr>
-            <div class="d-grid justify-content-center">
-                <img class="image-container d-none" width="800">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-auto">
+                    <img class="image-container d-none" style="max-width: 100%; max-height: 500px; height: auto">
+                </div>
+                <div class="col"></div>
             </div>
+
             <div class="post-text-short"></div>
             <div class="post-text-full d-none"></div>
             <a class="show-full-btn d-none" onclick="showFull(this)" style="cursor: pointer;">Показать полностью</a>

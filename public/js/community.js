@@ -22,12 +22,9 @@ function loadCommunity() {
         type: 'GET',
         contentType: 'application/json',
         success: function(data) {
-            console.log(data);
             displayCommunity(data);
         },
-        error: function(error) {
-            console.log(error);
-        }
+        error: function(error) {}
     });
 }
 

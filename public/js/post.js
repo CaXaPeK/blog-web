@@ -32,9 +32,7 @@ function loadComments(parentCommentId, comments, containerId, depth, showBtn) {
         success: function(data) {
             appendComments(data, containerId, depth);
         },
-        error: function(error) {
-            console.log(error);
-        }
+        error: function(error) {}
     });
 }
 
@@ -140,14 +138,11 @@ function leaveComment(parentId) {
         success: function(data) {
             location.reload();
         },
-        error: function(error) {
-            console.log(error);
-        }
+        error: function(error) {}
     });
 }
 
 function editComment(commentId) {
-    console.log(commentId);
     let commentTextLocal = document.getElementById('editCommentText' + "_" + commentId);
     let commentErrorLocal = document.getElementById('editCommentError' + "_" + commentId);
 
@@ -172,9 +167,7 @@ function editComment(commentId) {
         success: function(data) {
             location.reload();
         },
-        error: function(error) {
-            console.log(error);
-        }
+        error: function(error) {}
     });
 }
 
@@ -213,8 +206,6 @@ function deleteComment(commentId) {
         success: function(data) {
             location.reload();
         },
-        error: function(error) {
-            console.log(error);
-        }
+        error: function(error) {}
     });
 }

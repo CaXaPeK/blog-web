@@ -33,7 +33,6 @@ function authorizeNavbar(redirectIfFail) {
             return true;
         },
         error: function(error) {
-            console.log(error);
             disableAuthorizedButtons();
             if (redirectIfFail) {
                 window.location.href = '/login';
@@ -66,9 +65,6 @@ document.getElementById('logoutButton').addEventListener('click',   function(eve
                 localStorage.setItem('token', "");
                 disableAuthorizedButtons();
                 window.location.href = "/login";
-            } else {
-                console.error('Ошибка:', xhr.statusText);
-                //message: Не удалось выйти из системы.
             }
         }
     };

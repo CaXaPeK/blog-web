@@ -49,9 +49,7 @@ function loadMyCommunities() {
                 }
             }
         },
-        error: function(error) {
-            console.log(error);
-        }
+        error: function(error) {}
     });
 }
 
@@ -70,9 +68,7 @@ function loadAndAppendCommunity(id, autoSelect) {
                 communitySelect.selectedIndex = communitySelect.options.length - 1;
             }
         },
-        error: function(error) {
-            console.log(error);
-        }
+        error: function(error) {}
     });
 }
 
@@ -95,7 +91,6 @@ function loadAddresses(parentSelect, depth) {
                 i++
             }
             maxAddressDepth = depth - 2;
-            console.log(maxAddressDepth)
             return;
         }
     }
@@ -117,11 +112,8 @@ function loadAddresses(parentSelect, depth) {
                 appendAddressSelect(data, depth);
             }
             maxAddressDepth = depth - 1;
-            console.log(maxAddressDepth)
         },
-        error: function(error) {
-            console.log(error);
-        }
+        error: function(error) {}
     });
 }
 
@@ -154,7 +146,6 @@ function appendAddressSelect(addresses, depth) {
 function changeTitle(addressSelect) {
     let addressTypeLabel = addressSelect.parentNode.querySelector('.form-label');
 
-    console.log(addressTypeLabel)
     if (addressSelect.value == 'none') {
         if (addressSelect.id != "postAddress1") {
             addressTypeLabel.textContent = 'Следующий элемент адреса';
@@ -210,7 +201,6 @@ function createPost() {
         tags: tags
     }
 
-    console.log(lastAddress);
     let apiUrl = 'https://blog.kreosoft.space/api/post';
 
     if (postCommunity.value != 'noCommunity') {
@@ -232,8 +222,6 @@ function createPost() {
                 window.location.href = '/communities/' + postCommunity.value;
             }
         },
-        error: function(error) {
-            console.log(error);
-        }
+        error: function(error) {}
     });
 }

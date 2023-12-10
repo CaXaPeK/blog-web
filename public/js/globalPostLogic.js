@@ -30,7 +30,6 @@ function likePost(likeBtn) {
             }
 
             likeBtn.classList.remove('disabled');
-            console.log(error);
         }
     });
 
@@ -78,7 +77,6 @@ function loadTags(tagSelectName) {
             setLocalFilters();
         },
         error: function(error) {
-            console.log(error);
             setLocalFilters();
         }
     });
@@ -93,8 +91,6 @@ function setLocalFilters() {
     let minReadTimeFilter = document.getElementById('minReadTimeFilter');
     let maxReadTimeFilter = document.getElementById('maxReadTimeFilter');
     let myCommunitiesFilter = document.getElementById('myCommunitiesFilter');
-
-    console.log(params.get('author'));
 
     if (authorFilter != null) {
         if (params.get('author') != null) {
@@ -220,13 +216,12 @@ function loadPosts() {
             loadPagination(data.pagination.count, data.pagination.current, data.pagination.size);
         },
         error: function(error) {
-            console.log(error);
             if (error.status == 404) {
                 notFoundText.textContent = "Ничего не найдено :(";
                 loadPagination(0, 1, 5);
             }
             else if (error.status == 403) {
-
+                notFoundText.textContent = "Группа закрыта.";
             }
         }
     });
@@ -248,7 +243,6 @@ function loadPost() {
             'Content-Type': 'application/json'
         },
         success: function(data) {
-            console.log(data)
             notFoundText.textContent = '';
 
             if (data === null) {
@@ -261,13 +255,12 @@ function loadPost() {
             loadComments(null, data.comments, 'commentsContainer', 0, null);
         },
         error: function(error) {
-            console.log(error);
             if (error.status == 404) {
                 notFoundText.textContent = "Ничего не найдено :(";
                 loadPagination(0, 1, 5);
             }
             else if (error.status == 403) {
-
+                notFoundText.textContent = "Вы не можете просматривать этот пост.";
             }
         }
     });
@@ -333,7 +326,7 @@ function appendPost(post, isDetailed) {
             loadAddress(post.addressId, addressContainer);
         }
 
-        if (isDetailed) {
+        if (isDetailed && window.location.hash != "") {
             document.getElementById(window.location.hash.substring(1)).scrollIntoView(true);
         }
     })
@@ -358,8 +351,6 @@ function loadAddress(addressId, addressContainer) {
             addressContainer.querySelector('.address').textContent = addressString;
             addressContainer.classList.remove('d-none');
         },
-        error: function(error) {
-            console.log(error);
-        }
+        error: function(error) {}
     });
 }

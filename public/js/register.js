@@ -57,8 +57,6 @@ document.getElementById('registerBtn').addEventListener('click',   function(even
         phoneNumber: inputNumber.value
     };
 
-    console.log(postData);
-
     $.ajax({
         url: apiUrl,
         type: 'POST',
@@ -68,8 +66,6 @@ document.getElementById('registerBtn').addEventListener('click',   function(even
             localStorage.setItem('token', data.token);
             window.location.href = '/';
         },
-        error: function(error) {
-            console.log(error);
-        }
+        error: function(error) {}
     });
 });

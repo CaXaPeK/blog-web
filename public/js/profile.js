@@ -40,9 +40,7 @@ function getData() {
             inputNumber.value = data.phoneNumber;
             saveBtn.classList.remove('disabled');
         },
-        error: function(error) {
-            console.log(error);
-        }
+        error: function(error) {}
     });
 }
 
@@ -93,7 +91,6 @@ saveBtn.addEventListener('click',   function(event) {
         },
         error: function(error) {
             if (!error.statusText == 'OK') {
-                console.log(error);
                 if (error.responseJSON.errors.Email == 'User with this email already exists') {
                     reportValidityError(inputEmail, emailError, "Пользователь с таким адресом электронной почты уже существует.");
                 }

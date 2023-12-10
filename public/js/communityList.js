@@ -38,15 +38,11 @@ function loadCommunities() {
             'Content-Type': 'application/json'
         },
         success: function(data) {
-            console.log(data);
-
             for (let i = 0; i < data.length; i++) {
                 appendCommunity(data[i]);
             }
         },
-        error: function(error) {
-            console.log(error);
-        }
+        error: function(error) {}
     });
 }
 
