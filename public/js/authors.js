@@ -4,9 +4,7 @@ function sendAuthorizeCheck() {
     authorizeNavbar(false);
 }
 
-function authorizeInnerPage() {
-
-}
+function authorizeInnerPage() {}
 
 function loadAuthors() {
     let apiUrl = 'https://blog.kreosoft.space/api/author/list';
