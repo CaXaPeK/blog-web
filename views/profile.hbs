@@ -5,28 +5,28 @@
                 <div class="row mb-3">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Эл. почта</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="name@example.com" value="Загрузка..." required>
+                        <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="name@example.com" value="Загрузка..." onfocusout="validateEmail(inputEmail, emailError);" required>
                         <div class="invalid-feedback" id="emailError"></div>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="inputName" class="col-sm-2 col-form-label">ФИО</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName" placeholder="Иванов Иван Иванович" required>
+                        <input type="text" class="form-control" id="inputName" placeholder="Иванов Иван Иванович" onfocusout="validateName(inputName, nameError);" required>
                         <div class="invalid-feedback" id="nameError"></div>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="inputNumber" class="col-sm-2 col-form-label">Телефон</label>
                     <div class="col-sm-10">
-                        <input type="tel" class="form-control" id="inputNumber" placeholder="+7 (xxx) xxx-xx-xx" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$">
+                        <input type="tel" class="form-control" id="inputNumber" placeholder="+7 (xxx) xxx-xx-xx" onfocusout="validateNumber(inputNumber, numberError);" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$">
                         <div class="invalid-feedback" id="numberError"></div>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="inputGender" class="col-sm-2 col-form-label">Пол</label>
                     <div class="col-sm-10">
-                        <select class="form-control" id="inputGender">
+                        <select class="form-select" id="inputGender" onfocusout="validateGender(inputGender, genderError);">
                             <option selected disabled>—</option>
                             <option value="male">Мужчина</option>
                             <option value="female">Женщина</option>
@@ -37,7 +37,7 @@
                 <div class="row mb-3">
                     <label for="inputDate" class="col-sm-2 col-form-label">Дата рождения</label>
                     <div class="col-sm-10">
-                        <input type="date" class="form-control" id="inputDate" placeholder="дд.мм.гггг" required>
+                        <input type="date" class="form-control" id="inputDate" placeholder="дд.мм.гггг" onfocusout="validateDate(inputDate, dateError);" required>
                         <div class="invalid-feedback" id="dateError"></div>
                     </div>
                 </div>

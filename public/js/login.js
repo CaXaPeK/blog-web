@@ -7,14 +7,6 @@ function sendAuthorizeCheck() {
     authorizeNavbar(false);
 }
 
-inputEmail.addEventListener('focusout', function(event) {
-    validateEmail(inputEmail, emailError);
-})
-
-inputPassword.addEventListener('focusout', function(event) {
-    validatePassword(inputPassword, passwordError);
-})
-
 document.getElementById('loginBtn').addEventListener('click',   function(event) {
     event.preventDefault();
 

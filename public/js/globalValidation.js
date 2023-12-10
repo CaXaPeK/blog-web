@@ -4,6 +4,11 @@ function reportValidityError(input, errorField, message) {
     errorField.innerText = message;
 }
 
+function emptyValidity(input) {
+    input.classList.remove('is-valid');
+    input.classList.remove('is-invalid');
+}
+
 function reportValiditySuccess(input) {
     input.classList.remove('is-invalid');
     input.classList.add('is-valid');
@@ -21,7 +26,8 @@ function validateEmail(input, errorField) {
         return false;
     }
 
-    reportValiditySuccess(input);
+    emptyValidity(input);
+    //reportValiditySuccess(input);
     return true;
 }
 
@@ -42,7 +48,8 @@ function validatePassword(input, errorField) {
         return false;
     }
 
-    reportValiditySuccess(input);
+    emptyValidity(input);
+    //reportValiditySuccess(input);
     return true;
 }
 
@@ -52,7 +59,8 @@ function validateName(input, errorField) {
         return false;
     }
 
-    reportValiditySuccess(input);
+    emptyValidity(input);
+    //reportValiditySuccess(input);
     return true;
 }
 
@@ -68,7 +76,8 @@ function validateDate(input, errorField) {
         return false;
     }
 
-    reportValiditySuccess(input);
+    emptyValidity(input);
+    //reportValiditySuccess(input);
     return true;
 }
 
@@ -78,7 +87,8 @@ function validateGender(input, errorField) {
         return false;
     }
 
-    reportValiditySuccess(input);
+    emptyValidity(input);
+    //reportValiditySuccess(input);
     return true;
 }
 
@@ -88,7 +98,8 @@ function validateNumber(input, errorField) {
         return false;
     }
 
-    reportValiditySuccess(input);
+    emptyValidity(input);
+    //reportValiditySuccess(input);
     return true;
 }
 
@@ -108,6 +119,7 @@ function validateTitle(input, errorField) {
         return false;
     }
 
+    emptyValidity(input);
     return true;
 }
 
@@ -127,6 +139,7 @@ function validateReadTime(input, errorField) {
         return false;
     }
 
+    emptyValidity(input);
     return true;
 }
 
@@ -137,6 +150,7 @@ function validateImage(input, errorField) {
         return false;
     }
 
+    emptyValidity(input);
     return true;
 }
 
@@ -156,6 +170,7 @@ function validateText(input, errorField) {
         return false;
     }
 
+    emptyValidity(input);
     return true;
 }
 
@@ -165,6 +180,7 @@ function validateTags(input, errorField) {
         return false;
     }
 
+    emptyValidity(input);
     return true;
 }
 
@@ -179,5 +195,6 @@ function validateComment(input, errorField) {
         return false;
     }
 
+    emptyValidity(input);
     return true;
 }

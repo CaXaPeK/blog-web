@@ -5,12 +5,12 @@
             <form class="needs-validation" novalidate id="loginForm">
                 <div class="mb-3">
                     <label for="inputEmail" class="form-label">Электронная почта</label>
-                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="name@example.com" required>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="name@example.com" onfocusout="validateEmail(inputEmail, emailError);" required>
                     <div class="invalid-feedback" id="emailError"></div>
                 </div>
                 <div class="mb-3">
                     <label for="inputPassword" class="form-label">Пароль</label>
-                    <input type="password" class="form-control" id="inputPassword" required>
+                    <input type="password" class="form-control" id="inputPassword" onfocusout="validatePassword(inputPassword, passwordError);" required>
                     <div class="invalid-feedback" id="passwordError"></div>
                 </div>
                 <div class="d-grid gap-2">

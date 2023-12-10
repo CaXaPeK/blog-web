@@ -19,31 +19,6 @@ inputDate.setAttribute('max', today);
 function sendAuthorizeCheck() {
     authorizeNavbar(false);
 }
-
-inputEmail.addEventListener('focusout', function(event) {
-    validateEmail(inputEmail, emailError);
-})
-
-inputPassword.addEventListener('focusout', function(event) {
-    validatePassword(inputPassword, passwordError);
-})
-
-inputName.addEventListener('focusout', function(event) {
-    validateName(inputName, nameError);
-})
-
-inputDate.addEventListener('focusout', function(event) {
-    validateDate(inputDate, dateError);
-})
-
-inputGender.addEventListener('focusout', function(event) {
-    validateGender(inputGender, genderError);
-})
-
-inputNumber.addEventListener('focusout', function(event) {
-    validateNumber(inputNumber, numberError);
-})
-
 document.getElementById('registerBtn').addEventListener('click',   function(event) {
     event.preventDefault();
 

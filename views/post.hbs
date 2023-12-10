@@ -19,7 +19,7 @@
             <div class="card-body">
                 <div>
                     <label for="commentText" class="form-label">Оставьте комментарий</label>
-                    <textarea class="form-control" id="commentText"></textarea>
+                    <textarea class="form-control" id="commentText" onfocusout="validateComment(commentText, commentError);"></textarea>
                     <div class="invalid-feedback" id="commentError"></div>
                 </div>
                 <div class="row mt-3">

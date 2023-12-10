@@ -21,26 +21,6 @@ function sendAuthorizeCheck() {
     getData();
 }
 
-inputEmail.addEventListener('focusout', function(event) {
-    validateEmail(inputEmail, emailError);
-})
-
-inputName.addEventListener('focusout', function(event) {
-    validateName(inputName, nameError);
-})
-
-inputDate.addEventListener('focusout', function(event) {
-    validateDate(inputDate, dateError);
-})
-
-inputGender.addEventListener('focusout', function(event) {
-    validateGender(inputGender, genderError);
-})
-
-inputNumber.addEventListener('focusout', function(event) {
-    validateNumber(inputNumber, numberError);
-})
-
 function getData() {
     let apiUrl = 'https://blog.kreosoft.space/api/account/profile';
 
