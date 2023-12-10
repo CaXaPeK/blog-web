@@ -1,8 +1,9 @@
 let isClosed = false;
 
 loadCommunity();
-loadTags();
+loadTags('tagFilter');
 loadPosts();
+setLocalFilters();
 
 function sendAuthorizeCheck() {
     authorizeNavbar(false);

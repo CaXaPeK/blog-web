@@ -15,6 +15,9 @@ function authorizeInnerPage() {
 
 function loadComments(parentCommentId, comments, containerId, depth, showBtn) {
     if (parentCommentId == null) {
+        if (comments.length == 0) {
+            document.querySelector('.comments-card').remove();
+        }
         appendComments(comments, containerId, depth);
         return;
     }
@@ -75,6 +78,7 @@ function appendComments(comments, containerId, depth) {
             $commentTemplate.find('.send-comment-text').attr('id', 'commentText_' + comments[i].id);
             $commentTemplate.find('.send-comment-error').attr('id', 'commentError_' + comments[i].id);
             $commentTemplate.find('.edit-comment-text').attr('id', 'editCommentText_' + comments[i].id);
+            $commentTemplate.find('.edit-comment-text').attr('value', comments[i].content);
             $commentTemplate.find('.edit-comment-error').attr('id', 'editCommentError_' + comments[i].id);
             $commentTemplate.find('.btn-delete').attr('onclick', 'deleteComment("' + comments[i].id + '")');
 
@@ -175,11 +179,25 @@ function editComment(commentId) {
 }
 
 function showReplyForm(replyBtn) {
+    closeAllForms()
     replyBtn.parentNode.parentNode.querySelector('.reply-form').classList.remove('d-none');
 }
 
 function showEditForm(editBtn) {
+    closeAllForms()
     editBtn.parentNode.parentNode.parentNode.querySelector('.edit-form').classList.remove('d-none');
+}
+
+function closeAllForms() {
+    let replyForms = document.querySelectorAll('.reply-form');
+    for (let i = 0; i < replyForms.length; i++) {
+        replyForms[i].classList.add('d-none');
+    }
+
+    let editForms = document.querySelectorAll('.edit-form');
+    for (let i = 0; i < editForms.length; i++) {
+        editForms[i].classList.add('d-none');
+    }
 }
 
 function deleteComment(commentId) {

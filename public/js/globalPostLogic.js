@@ -48,7 +48,7 @@ function likePost(likeBtn) {
 }
 
 function commentPost(commentBtn) {
-    window.location.href = "/post/" + commentBtn.id + "#Комментарии";
+    window.location.href = "/post/" + commentBtn.id + "#commentElements";
 }
 
 function showFull(showBtn) {
@@ -75,14 +75,67 @@ function loadTags(tagSelectName) {
                 let option = new Option(data[i].name, data[i].id);
                 tagSelect.add(option);
             }
+            setLocalFilters();
         },
         error: function(error) {
             console.log(error);
+            setLocalFilters();
         }
     });
 }
 
+function setLocalFilters() {
+    let params = new URLSearchParams(window.location.search);
 
+    let authorFilter = document.getElementById('authorFilter');
+    let tagFilter = document.getElementById('tagFilter');
+    let sortFilter = document.getElementById('sortFilter');
+    let minReadTimeFilter = document.getElementById('minReadTimeFilter');
+    let maxReadTimeFilter = document.getElementById('maxReadTimeFilter');
+    let myCommunitiesFilter = document.getElementById('myCommunitiesFilter');
+
+    console.log(params.get('author'));
+
+    if (authorFilter != null) {
+        if (params.get('author') != null) {
+            authorFilter.value = params.get('author');
+        }
+    }
+    if (minReadTimeFilter != null) {
+        if (params.get('min') != null) {
+            minReadTimeFilter.value = params.get('min');
+        }
+    }
+    if (maxReadTimeFilter != null) {
+        if (params.get('max') != null) {
+            maxReadTimeFilter.value = params.get('max');
+        }
+    }
+    if (sortFilter != null) {
+        if (params.get('sorting') != null) {
+            sortFilter.value = params.get('sorting');
+        }
+    }
+    if (myCommunitiesFilter != null) {
+        if (params.get('onlyMyCommunities') != null) {
+            myCommunitiesFilter.checked = params.get('onlyMyCommunities');
+        }
+    }
+    if (tagFilter != null) {
+        if (params.getAll('tagFilter') != null) {
+            let selectedTags = params.getAll('tags');
+            for (let i = 0; i < selectedTags.length; i++) {
+                for (let j = 0; j < tagFilter.options.length; j++) {
+                    if (tagFilter.options[j].value == selectedTags[i]) {
+                        tagFilter.options[j].selected = true;
+                    }
+                }
+            }
+        }
+    }
+
+
+}
 
 function sendFilters() {
     let params = new URLSearchParams();
@@ -278,6 +331,10 @@ function appendPost(post, isDetailed) {
             let postContainer = document.getElementById('postContainer');
             let addressContainer = postContainer.childNodes[postContainer.childNodes.length - 1].querySelector('.address-container');
             loadAddress(post.addressId, addressContainer);
+        }
+
+        if (isDetailed) {
+            document.getElementById(window.location.hash.substring(1)).scrollIntoView(true);
         }
     })
 }
