@@ -1,32 +1,39 @@
-<div id="postContainer"></div>
-<div class="card shadow-sm my-3" id="postTemplate">
-    <div class="card-body">
-        <p class="text-muted post-metadata">просто какой-то тестовый текст</p>
-        <h3 class="card-title" onclick="pressTitle(this)" style="cursor: pointer;">Заголовок</h3>
-        <hr>
-        <div class="d-grid justify-content-center">
-            <img class="image-container d-none" width="800">
-        </div>
-        <div class="post-text-short"></div>
-        <div class="post-text-full d-none"></div>
-        <a class="show-full-btn d-none" onclick="showFull(this)" style="cursor: pointer;">Показать полностью</a>
-        <div class="tags text-muted mt-3">#какойтотег</div>
-        <div class="read-time">Время чтения: 1 мин.</div>
-    </div>
-    <div class="card-footer text-muted">
-        <div class="row">
-            <div class="col-auto comment-btn" onclick="commentPost(this)" style="cursor: pointer;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chat-left-dots-fill" viewBox="0 0 16 16">
-                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
-                </svg>
-                <text class="comment-count">10</text>
+<div id="post">
+    <div class="card shadow-sm my-3" id="postTemplate">
+        <div class="card-body">
+            <p class="text-muted post-metadata">просто какой-то тестовый текст</p>
+            <h3 class="card-title" onclick="pressTitle(this)" style="cursor: pointer;">Заголовок</h3>
+            <hr>
+            <div class="d-grid justify-content-center">
+                <img class="image-container d-none" width="800">
             </div>
-            <div class="col"></div>
-            <div class="col-auto like-btn" onclick="likePost(this)" style="cursor: pointer;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+            <div class="post-text-short"></div>
+            <div class="post-text-full d-none"></div>
+            <a class="show-full-btn d-none" onclick="showFull(this)" style="cursor: pointer;">Показать полностью</a>
+            <div class="tags text-muted mt-3">#какойтотег</div>
+            <div class="read-time">Время чтения: 1 мин.</div>
+            <div class="address-container d-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
                 </svg>
-                <text class="like-count">10</text>
+                <span class="address">10</span>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            <div class="row">
+                <div class="col-auto comment-btn" onclick="commentPost(this)" style="cursor: pointer;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chat-left-dots-fill" viewBox="0 0 16 16">
+                        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                    </svg>
+                    <text class="comment-count">10</text>
+                </div>
+                <div class="col"></div>
+                <div class="col-auto like-btn" onclick="likePost(this)" style="cursor: pointer;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                    </svg>
+                    <text class="like-count">10</text>
+                </div>
             </div>
         </div>
     </div>

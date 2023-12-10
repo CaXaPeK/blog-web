@@ -156,7 +156,7 @@ function loadPosts() {
             notFoundText.textContent = '';
 
             for (let i = 0; i < data.posts.length; i++) {
-                appendPost(data.posts[i]);
+                appendPost(data.posts[i], false);
             }
 
             if (data.posts.length === 0) {
@@ -179,7 +179,44 @@ function loadPosts() {
     });
 }
 
-function appendPost(post) {
+function loadPost() {
+    postId = document.querySelector('.post-id-container').id;
+
+    let apiUrl = 'https://blog.kreosoft.space/api/post/' + postId;
+    let notFoundText = document.getElementById('notFoundText');
+
+    $.ajax({
+        url: apiUrl,
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            'Content-Type': 'application/json'
+        },
+        success: function(data) {
+            console.log(data)
+            notFoundText.textContent = '';
+
+            if (data === null) {
+                notFoundText.textContent = "Ничего не найдено :(";
+            }
+
+            appendPost(data, true);
+        },
+        error: function(error) {
+            console.log(error);
+            if (error.status == 404) {
+                notFoundText.textContent = "Ничего не найдено :(";
+                loadPagination(0, 1, 5);
+            }
+            else if (error.status == 403) {
+
+            }
+        }
+    });
+}
+
+function appendPost(post, isDetailed) {
     $.get("/templates/post.html", null, function(data){
         let $clonedPost = $(data).clone();
 
@@ -211,6 +248,14 @@ function appendPost(post) {
             $clonedPost.find('.like-btn').addClass('text-danger');
         }
 
+        if (isDetailed) {
+            $clonedPost.find('.card-title').attr('onclick', '');
+            $clonedPost.find('.card-title').attr('style', '');
+
+            $clonedPost.find('.comment-btn').attr('onclick', '');
+            $clonedPost.find('.comment-btn').attr('style', '');
+        }
+
         $clonedPost.find('.post-metadata').text(metadata);
         $clonedPost.find('.card-title').text(post.title);
         $clonedPost.find('.card-title').attr("id", post.id);
@@ -224,5 +269,36 @@ function appendPost(post) {
         $clonedPost.find('.tags').text(tags);
 
         $("#postContainer").append($clonedPost);
+
+        if (post.addressId != null) {
+            let postContainer = document.getElementById('postContainer');
+            let addressContainer = postContainer.childNodes[postContainer.childNodes.length - 1].querySelector('.address-container');
+            loadAddress(post.addressId, addressContainer);
+        }
     })
+}
+
+function loadAddress(addressId, addressContainer) {
+    let apiUrl = 'https://blog.kreosoft.space/api/address/chain?objectGuid=' + addressId;
+
+    $.ajax({
+        url: apiUrl,
+        type: 'GET',
+        contentType: 'application/json',
+        success: function(data) {
+            let addressString = '';
+            for (let i = 0; i < data.length; i++) {
+                if (i != 0) {
+                    addressString += ', ';
+                }
+                addressString += data[i].text;
+            }
+
+            addressContainer.querySelector('.address').textContent = addressString;
+            addressContainer.classList.remove('d-none');
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
 }
