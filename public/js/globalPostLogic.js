@@ -180,9 +180,10 @@ function loadPosts() {
 }
 
 function loadPost() {
-    postId = document.querySelector('.post-id-container').id;
+    id = document.querySelector('.post-id-container').id;
+    postId = id;
 
-    let apiUrl = 'https://blog.kreosoft.space/api/post/' + postId;
+    let apiUrl = 'https://blog.kreosoft.space/api/post/' + id;
     let notFoundText = document.getElementById('notFoundText');
 
     $.ajax({
@@ -200,6 +201,8 @@ function loadPost() {
             if (data === null) {
                 notFoundText.textContent = "Ничего не найдено :(";
             }
+
+            document.getElementById('commentElements').classList.remove('d-none');
 
             appendPost(data, true);
             loadComments(null, data.comments, 'commentsContainer', 0, null);

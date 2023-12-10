@@ -167,3 +167,17 @@ function validateTags(input, errorField) {
 
     return true;
 }
+
+function validateComment(input, errorField) {
+    if (input.value.length == 0) {
+        reportValidityError(input, errorField, "Комментарий не может быть пустым.");
+        return false;
+    }
+
+    if (input.value.length > 1000) {
+        reportValidityError(input, errorField, "Максимальная длина комментария — 1000.");
+        return false;
+    }
+
+    return true;
+}

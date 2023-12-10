@@ -6,5 +6,7 @@ function sendAuthorizeCheck() {
 }
 
 function authorizeInnerPage() {
-    document.getElementById('newPostBtn').classList.remove('disabled');
+    if (authorized == true) {
+        document.getElementById('newPostBtn').classList.remove('disabled');
+    }
 }

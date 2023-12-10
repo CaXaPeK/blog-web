@@ -5,6 +5,10 @@ loadTags();
 loadPosts();
 
 function sendAuthorizeCheck() {
+    authorizeNavbar(false);
+}
+
+function authorizeInnerPage() {
 
 }
 

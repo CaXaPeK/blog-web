@@ -5,7 +5,9 @@ let profileDropdown = document.getElementById('profileDropdown');
 let emailText = document.getElementById('emailText');
 let createPostButton = document.getElementById('createPostButton');
 
-var authorized = false;
+let authorized = false;
+let userId = null;
+let userName = null;
 
 function authorizeNavbar(redirectIfFail) {
     let apiUrl = 'https://blog.kreosoft.space/api/account/profile';
@@ -24,6 +26,8 @@ function authorizeNavbar(redirectIfFail) {
             loginLink.style.display = "none";
             profileDropdown.style.display = "flex";
             authorized = true;
+            userId = data.id;
+            userName = data.fullName;
             authorizeInnerPage();
 
             return true;
@@ -34,6 +38,7 @@ function authorizeNavbar(redirectIfFail) {
             if (redirectIfFail) {
                 window.location.href = '/login';
             }
+            authorizeInnerPage();
 
             return false;
         }
