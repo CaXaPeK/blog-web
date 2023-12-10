@@ -22,6 +22,7 @@ function loadCommunity() {
         type: 'GET',
         contentType: 'application/json',
         success: function(data) {
+            document.title = data.name;
             displayCommunity(data);
         },
         error: function(error) {}

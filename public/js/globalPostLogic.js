@@ -329,6 +329,10 @@ function appendPost(post, isDetailed) {
         if (isDetailed && window.location.hash != "") {
             document.getElementById(window.location.hash.substring(1)).scrollIntoView(true);
         }
+
+        if (isDetailed) {
+            document.title = post.title;
+        }
     })
 }
 
