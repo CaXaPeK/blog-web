@@ -202,6 +202,7 @@ function loadPost() {
             }
 
             appendPost(data, true);
+            loadComments(null, data.comments, 'commentsContainer', 0, null);
         },
         error: function(error) {
             console.log(error);

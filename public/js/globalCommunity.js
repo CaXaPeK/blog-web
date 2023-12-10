@@ -80,7 +80,7 @@ function subscribe(btn, action, containerPrefix) {
                         subCount.textContent = (subCountValue + 1) + " подписчик" + russianPlural(subCountValue + 1, "", "а", "ов");
                     }
                     else {
-                        subCount.textContent = (subCountValue - 1) + " подписчик" + russianPlural(subCountValue - 1, "", "а", "ов");;
+                        subCount.textContent = (subCountValue - 1) + " подписчик" + russianPlural(subCountValue - 1, "", "а", "ов");
                     }
                 }
             }
